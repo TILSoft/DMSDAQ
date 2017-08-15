@@ -25,3 +25,6 @@ Version 2.0
 Veraion 2.1
 
 1)  Added application config file switch for logging of data
+
+Version 2.25
+1) Added error handling for when a counter device is used as a strart stop device and it loses its connection

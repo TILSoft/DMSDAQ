@@ -18,8 +18,8 @@
     <OptionStrict>Off</OptionStrict>
     <OptionInfer>On</OptionInfer>
     <IsWebBootstrapper>false</IsWebBootstrapper>
-    <ManifestCertificateThumbprint>F0EE2DED463A583D0042B1B4DCC358829AD62418</ManifestCertificateThumbprint>
-    <ManifestKeyFile>DMSPollingService_2_TemporaryKey.pfx</ManifestKeyFile>
+    <ManifestCertificateThumbprint>0D9230F52DF3B2A82E7BC0C3D32E14B8B2874B2F</ManifestCertificateThumbprint>
+    <ManifestKeyFile>DMSPollingService_1_TemporaryKey.pfx</ManifestKeyFile>
     <GenerateManifests>true</GenerateManifests>
     <SignManifests>true</SignManifests>
     <FileUpgradeFlags>
@@ -68,7 +68,8 @@
     <SignAssembly>false</SignAssembly>
   </PropertyGroup>
   <PropertyGroup>
-    <AssemblyOriginatorKeyFile>DMSPollingService_1_TemporaryKey.pfx</AssemblyOriginatorKeyFile>
+    <AssemblyOriginatorKeyFile>
+    </AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="NationalInstruments.Common, Version=8.5.35.149, Culture=neutral, PublicKeyToken=18cbae0f9955702a, processorArchitecture=MSIL">
@@ -89,6 +90,7 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Deployment" />
     <Reference Include="System.ServiceProcess" />
+    <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Web.Services" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
@@ -169,6 +171,7 @@
     <None Include="app.config">
       <SubType>Designer</SubType>
     </None>
+    <None Include="bin\Release\DMSPollingService.exe.config" />
     <None Include="Device.xsc">
       <DependentUpon>Device.xsd</DependentUpon>
     </None>
@@ -181,7 +184,6 @@
       <DependentUpon>Device.xsd</DependentUpon>
     </None>
     <None Include="DMSPollingService_1_TemporaryKey.pfx" />
-    <None Include="DMSPollingService_2_TemporaryKey.pfx" />
     <None Include="DMSPollingService_TemporaryKey.pfx" />
     <None Include="Events.xsc">
       <DependentUpon>Events.xsd</DependentUpon>
@@ -202,6 +204,7 @@
     <None Include="My Project\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <CustomToolNamespace>My</CustomToolNamespace>
+      <LastGenOutput>Settings1.Designer.vb</LastGenOutput>
     </None>
   </ItemGroup>
   <ItemGroup>
@@ -237,7 +240,15 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="bin\NationalInstruments.Common.dll" />
+    <Content Include="bin\NationalInstruments.Common.Native.dll" />
+    <Content Include="bin\NationalInstruments.DAQmx.dll" />
+    <Content Include="bin\Release\DMSPollingService.exe" />
+    <Content Include="bin\Release\DMSPollingService.pdb" />
     <Content Include="Version.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="bin\Debug\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

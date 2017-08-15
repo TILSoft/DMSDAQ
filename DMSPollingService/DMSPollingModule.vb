@@ -296,7 +296,7 @@ Public Class NewService1
 
             arrDAQ(i, 15) = True
 
-            If arrDAQ(i, 14) = 5 Then
+            If arrDAQ(i, 14) = 5 Then 'if tis a http device like the rabbit devices
 
                 Try
                     'LogWriter("pre getting data from " & arrDAQ(i, 4) & " res: " & arrDAQ(i, 3))
@@ -334,17 +334,38 @@ Public Class NewService1
 
             If arrDAQ(i, 14) = 2 Then  'if its a digital read
 
-                arrDAQ(i, 3) = CInt(arrDAQ(i, 2).readsinglesamplesingleline())
+                Try
 
-                If arrDAQ(i, 3) = -1 Then
+                    arrDAQ(i, 3) = CInt(arrDAQ(i, 2).readsinglesamplesingleline())
 
-                    endevent(i)
+                    If arrDAQ(i, 3) = -1 Then
 
-                ElseIf arrDAQ(i, 3) = 0 Then
+                        endevent(i)
 
-                    startevent(i)
+                    ElseIf arrDAQ(i, 3) = 0 Then
 
-                End If
+                        startevent(i)
+
+                    End If
+
+                Catch exG As Exception
+
+                    If arrDAQ(i, 6) = 999.0 Then  '999.000 in the devicelowval field indicates that the device is a counter device being used as a digital start stop device
+                        'hence you have to try to reconnect to it if it has lost its connection.
+                        'if its a counter device being used just for stop start and the comms have failed try to reconnect
+                        Try
+                            newtask.DIChannels.CreateChannel(arrDAQ(i, 1), "Digi", ChannelLineGrouping.OneChannelForEachLine)
+                            newdigreader = New DigitalSingleChannelReader(newtask.Stream)
+                            arrDAQ(i, 2) = newdigreader
+                            arrDAQ(i, 17) = True
+                        Catch ex As Exception
+                            ErrorWriter("Reconnect Digital Initialisation error:", ex)
+                        End Try
+
+                    End If
+
+
+                End Try
 
             End If
 
